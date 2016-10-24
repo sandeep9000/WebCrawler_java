@@ -1,17 +1,12 @@
 
 
-import java.io.BufferedWriter;
+
+
+
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-
-
 import junit.framework.*;
 import org.junit.Test;
-//import java.io.BufferedReader;
-//import java.io.BufferedWriter;
-//import java.io.File;
-//import java.io.FileInputStream;
 
 
 	public class TestURL extends TestCase {
@@ -21,29 +16,22 @@ import org.junit.Test;
 	   // assigning the values
 	   protected void setUp() throws IOException {
 		 
-	      value2 = "http://wiprodigital.com";
-	      File dir = new File(".");
-			String loc = dir.getCanonicalPath() + File.separator + "record.txt";
-			// System.out.println(loc);
-			FileWriter fstream = new FileWriter(loc, true);
-			BufferedWriter out = new BufferedWriter(fstream);
-			out.newLine();
-			out.close();
+	      value1 = "http://wiprodigital.com";
 	   }
 
-	   // test method to add  matching  URl;
+	  
 	   
-	 
+	   // test method to add  matching  URl;
+    
 	   @Test
 	   public void testAdd() throws IOException {
-		   File dir = new File(".");
-		   String loc = dir.getCanonicalPath() + File.separator ;
-		   File file = new File(loc);
-		   boolean e =crawler.checkExist(value1, file);
-		   assertEquals(crawler.checkExist(value1, file), e);
+		   value2 = "http://wiprodigital.com";
+		 
+		   File file = new File("/Users/user1/Documents/workspace/Web_Crawler1/record.txt");
+		   boolean e =crawler.checkExist(value2, file);
+		   assertEquals(crawler.checkExist(value2, file), e);
            crawler.processPage(value2);
-		   assertEquals(crawler.checkExist(value1, file),e);
-		   assertTrue(value1 == value2);
+		  assertTrue(value1 == value2);
 	   }
 	}
 	
