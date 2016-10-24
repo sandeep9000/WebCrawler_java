@@ -5,8 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,37 +16,28 @@ public class crawler {
 	public static void main(String[] args) throws IOException {
  
 		File dir = new File(".");
-		//if(!dir.exists()){
-			//dir.mkdir();}
+	
 	//location of work space  of file /Users/user1/Documents/workspace/Web_Crawler1/record.txt
 		
 		
-		Date date = new Date() ;
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd ") ;
-		//String loc = ("src /"+ dateFormat.format(date) +"record.txt");
-		String loc = dir.getCanonicalPath() + File.separator  + "record.txt"  ;
-		//if(!tagFile.exists()){
-			//tagFile.createNewFile();
-			//}
+		
+		File f = new File("/Users/user1/Documents/workspace/Web_Crawler1/record.txt");
+		if(f.exists()) { 
+		    // do something
+			f.delete();
+		}
+		
+		String loc = dir.getCanonicalPath()  + File.separator  + "record.txt" ;
+		
 		 System.out.println(loc);
+		 
 		FileWriter fstream = new FileWriter(loc, true);
 		BufferedWriter out = new BufferedWriter(fstream);
 		out.newLine();
 		out.close();
  
 		processPage("http://wiprodigital.com");
-		//File file = new File(loc);
-		 //if (file.exists()) {
-	    // file.delete();
-	 //}
-	
-	// file.createNewFile();
-		//File file = new File(loc);
-		//if (file.exists()) {
-	  //   file.delete();
-	     
- //}
-	
+		
 	
 	}
  
@@ -64,7 +53,7 @@ public class crawler {
 		while ((aLine = in.readLine()) != null) {
 			// //Process each line
 			if (aLine.trim().contains(s)) {
-				//System.out.println("contains " + s);
+				
 				in.close();
 				fis.close();
 				return true;
@@ -81,11 +70,8 @@ public class crawler {
 	public static void processPage(String URL) throws IOException {
  
 		File dir = new File(".");
-		Date date = new Date() ;
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
-
-		//String loc = dir.getCanonicalPath() + File.separator + dateFormat.format(date) +"record.txt";
-		String loc = dir.getCanonicalPath() + File.separator + "record.txt";
+		
+		String loc = dir.getCanonicalPath()   + File.separator + "record.txt";
  
 		// invalid link
 		if (URL.contains(".pdf") || URL.contains("@") 
@@ -103,28 +89,10 @@ public class crawler {
 			// url of other site -> do nothing
 			return;
 		}
+		
  
 		File file = new File(loc);
 		
-		//boolean bool = false;
-		 // deletes file from the system
-		
-	
-      
-       
-       // delete() is invoked
-      
-       
-       // tries to create new file in the system
-     
-		//File file = new File(FilePath + getFileName()); //filepath is being passes through //ioc         //and filename through a method 
-
-		// if (file.exists()) {
-		   //  file.delete(); //you might want to check if delete was successfull
-		   //  }
-		// file.createNewFile();
-
-	
 		// check existance
 		boolean e = checkExist(URL, file);
 		if (!e) {
